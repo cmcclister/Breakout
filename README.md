@@ -1,2 +1,2 @@
 # bouncey-bouncey
-The arcade classic "Breakout" in JS and HTML 5
+The arcade classic "Breakout" in JS and HTML5
