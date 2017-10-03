@@ -15,21 +15,20 @@ const Control = (() => {
               break;
             case 13:
             case 32:
-              pauseUpdate(Global.Pause);
-              Global.Pause
+              Global.pauseUpdate(Global.Pause);
               if (!Global.Pause) {
                 if (!Global.Start) {
-                  gameInterlude('GameStart'); // Show "Ready, Set, Go" animation
+                  Game.interlude('GameStart'); // Show "Ready, Set, Go" animation
                   Global.Start = true;
                 } else {
-                  gameLoop(); // Continue game
+                  Game.loop(); // Continue game
                 }
               }
               break;
             case 9: 
             case 83:
               if (Constant.Test.AUDIO) {
-                soundUpdate(Global.Sound);
+                Global.soundUpdate(Global.Sound);
               }
               break;
             default:
@@ -80,27 +79,23 @@ const Control = (() => {
     const touchStartHandler = e => {
         if (!Global.Lock) {
           if (!Global.Start) { // If starting game, show "Ready, Set, Go" animation
-            gameInterlude('GameStart'); 
+            Game.interlude('GameStart'); 
             Global.Start = true;
-          } else if (Constant.Test.AUDIO) {
-            soundUpdate(Global.Sound);
-          }
+          } else if (Constant.Test.AUDIO) Global.soundUpdate(Global.Sound);
         }
         e.preventDefault();
     }
 
     const touchPauseHandler = e => {
         if (Global.Start && !Globa.Lock) { // Should only fire if game has started
-          pauseUpdate(Global.Pause);
-          if (!Global.Pause) gameLoop(); // Continue game
+          Global.pauseUpdate(Global.Pause);
+          if (!Global.Pause) Game.loop(); // Continue game
         }
         e.preventDefault();
     }
 
-    const touchLeftStartHandler = e => {
-        if (Global.Start && !Global.Pause && !Global.Lock) { // Should only fire if game has started and not paused
-          Global.Left = true;
-        }
+    const touchLeftStartHandler = e => { // Should only fire if game has started and not paused
+        if (Global.Start && !Global.Pause && !Global.Lock) Global.Left = true;
         e.preventDefault();
     }
 
@@ -109,10 +104,8 @@ const Control = (() => {
         e.preventDefault();
     }
 
-    const touchRightStartHandler = e => {
-        if (Global.Start && !Global.Pause && !Global.Lock) { // Should only fire if game has started and not paused
-          Global.Right = true;
-        }
+    const touchRightStartHandler = e => { // Should only fire if game has started and not paused
+        if (Global.Start && !Global.Pause && !Global.Lock) Global.Right = true;
         e.preventDefault();
     }
 
@@ -135,9 +128,9 @@ const Control = (() => {
         window.addEventListener('resize', () => { Control.resize() }); // Handle browser resizing
     }
 
-    const pub_resize = s => { // Any time the browser is resized, redraw canvas
+    const pub_resize = (s = true) => { // Any time the browser is resized, redraw canvas
       Global.Pause = true;
-      Global.SpeedIncrement = 1; // reset
+      Global.SpeedBaseline = 1; // reset
 
       Global.Width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
       Global.Height = Math.max(document.documentElement.clientHeight, window.innerHeight || /* ie */ document.documentElement.offsetHeight || 0);
@@ -146,7 +139,7 @@ const Control = (() => {
       let wP = true; // Width precedence (vs. Height precedence)
      
       if (Global.Width < 450) { // width param prevents x overflow on phones in portrait mode
-        Global.SpeedIncrement = 3.5;
+        Global.SpeedBaseline = 3.5;
         fM = Math.floor(380 / Constant.eNum.TileMap.X);
         fM *= Constant.eNum.TileMap.X;
       } else if (Constant.eNum.TileMap.Y > Constant.eNum.TileMap.X) { 
@@ -154,16 +147,16 @@ const Control = (() => {
         for (var i = 0; i < 50; i++) {
           fM = Constant.eNum.TileMap.Y * i;
           if (Global.Height > fM && Global.Height < fM + Constant.eNum.TileMap.Y) break;
-          Global.SpeedIncrement *= 1.1;
+          Global.SpeedBaseline *= 1.1;
         }
-        if (Constant.Test.TOUCH) Global.SpeedIncrement /= 2; // Tablet fix         
+        if (Constant.Test.TOUCH) Global.SpeedBaseline /= 2; // Tablet fix         
       } else {
         for (var i = 0; i < 50; i++) {
           fM = Constant.eNum.TileMap.X * i;
           if (Global.Width > fM && Global.Width < fM + Constant.eNum.TileMap.X) break;
-          Global.SpeedIncrement *= 1.1;
+          Global.SpeedBaseline *= 1.1;
         }
-        if (Constant.Test.TOUCH) Global.SpeedIncrement /= 2; // Tablet fix 
+        if (Constant.Test.TOUCH) Global.SpeedBaseline /= 2; // Tablet fix 
       }
       
       if (wP) { // Width of window sets game dimensions
@@ -185,10 +178,8 @@ const Control = (() => {
       Player.set(); // Reset paddle position
       Char.set(); // Reset ball position
       
-      if (Elements.Array.length > 0) {
-        Elements.scale(); // Redraw bricks to fit new canvas size
-      }
-
+      if (Elements.Array.length > 0) Elements.scale(); // Redraw bricks to fit new canvas size
+      if (s) Global.SpeedIncrement = Global.SpeedBaseline;
       Draw.canvas(s);
     }
 

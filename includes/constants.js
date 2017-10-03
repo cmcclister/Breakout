@@ -38,8 +38,9 @@ const Constant = {
         SAFARI      : UA.isSafari
     },
     Canvas: {
-        ELEMENT : 'canvas',
-        CONTEXT : '2d'
+        BACKGROUND  : 'white',
+        ELEMENT     : 'canvas',
+        CONTEXT     : '2d'
     },
     Char: {
         COLOR : 'black'
@@ -52,9 +53,12 @@ const Constant = {
         PURPLE : '#A5B3FF',
         YELLOW : '#FFF7A5'
     },
+    Element: {
+        STROKE : 'black'
+    },
     eNum: {
         Char: {
-            INCREMENT : 0.1,
+            INCREMENT : 0.05,
             RADIUS    : 0.2
         },
         Elements: {

@@ -2,11 +2,11 @@ const Elements = {
   Array   : [],
   Counter : 0,
   	draw() { // Set up elements in default locale
-      for(var y = 0 ; y < Elements.Array.length ; y++) {
-        for (var x = 0 ; x < Elements.Array[y].length ; x++) {
-          var el = Elements.Array[y][x];
+      for(let y = 0 ; y < Elements.Array.length ; y++) {
+        for (let x = 0 ; x < Elements.Array[y].length ; x++) {
+          let el = Elements.Array[y][x];
           if (el.s === 1) {
-            Draw.rect('stroke', null, 'black', el.x, el.y, el.w, el.h);
+            Draw.rect('stroke', null, Constant.Element.STROKE, el.x, el.y, el.w, el.h);
             Draw.rect('fill', el.c, null, el.x+Constant.eNum.Elements.PADDING-2, el.y+Constant.eNum.Elements.PADDING-2, el.w-Constant.eNum.Elements.PADDING+1, el.h-Constant.eNum.Elements.PADDING+1);
           }
         }
@@ -21,11 +21,10 @@ const Elements = {
       for (let y = 0 ; y < elY ; y++) {
         let line  = Global.Layout.elements[y] + " "; // extra space simplifies loop
         if (line !== ' ') {
-          let elArrayX = 0;
+          let elArrayX = elN = 0;
           Elements.Array[elArrayY] = [];
           let elX = line.length;
           let elW = 1;
-          let elN = 0;
           for (let x = 0 ; x < elX ; x++) {
             let c = line[x];
             if (c !== ' ') {
@@ -52,12 +51,12 @@ const Elements = {
           elArrayY++;
         }
       }
-      if (d) Elements.draw();
+      if (d) Elements.draw(); // Draw bricks
     },
     scale() {
       for(let y = 0 ; y < Elements.Array.length ; y++) {
         for (let x = 0 ; x < Elements.Array[y].length ; x++) {
-          let el = Elements.Array[y][x]; // rescale elements
+          let el = Elements.Array[y][x]; // rescale bricks
           let oTile = el.z; // scale based upon old tile size
           el.x = (el.x / oTile) * Global.Tile; // rescale
           el.y = (el.y / oTile) * Global.Tile; // rescale

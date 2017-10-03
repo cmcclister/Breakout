@@ -12,7 +12,8 @@ const Global = {
 	Start 			: false,
 	Score  		 	: 0,
 	ScoreCounter 	: 1,
-	SpeedIncrement 	: 1,
+	SpeedBaseline   : 3.5,
+	SpeedIncrement 	: 3.5,
 	Sound  		 	: Constant.Test.AUDIO,
 	Tile		 	: 0,
 	Top			 	: 0,
@@ -21,23 +22,13 @@ const Global = {
 		if (!Constant.Test.TOUCH) document.getElementById('touchControl').style.display = 'none'; // Only show buttons for touch devices
         Global.Layout = Game.Levels[0];
         Global.Left = Global.Right = Global.Start = false;
-        Global.Level = Global.ScoreCounter = 0;
+        Global.Level = Global.ScoreCounter = Global.Score = 0;
         Global.Lives = 3;
-        Global.Score = 0;
-        Global.ExtraLives = Constant.eNum.Score.EXTRA_LIVES;
-		//Global.set();
+        Global.SpeedIncrement = 3.5;
+        Global.ExtraLives = [];
+        for (x of Constant.eNum.Score.EXTRA_LIVES) Global.ExtraLives.push(x);
 	},
-	/*set() {
-		Global.Bottom = Global.Tile * (Constant.eNum.TileMap.Y * 0.944);
-		Constant.eNum.TileMap.Y > Constant.eNum.TileMap.X ? (
-			Global.Height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
-	  		Global.Width = Global.Height * (Constant.eNum.TileMap.X / Constant.eNum.TileMap.Y),
-	  		Global.Tile = Math.round(Global.Height / Constant.eNum.TileMap.Y)
-		) : (
-	  		Global.Width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-	  		Global.Height = Global.Width * (Constant.eNum.TileMap.Y / Constant.eNum.TileMap.X),
-	  		Global.Tile = Math.round(Global.Width / Constant.eNum.TileMap.X)
-		);
-		Global.Top = Global.Tile * (Constant.eNum.TileMap.Y * 0.056);
-	}*/
+	lockUpdate(l = true) { Global.Lock = !l },
+	pauseUpdate(p = true) { Global.Pause = !p },
+	soundUpdate(s = true) { Global.Sound = !s }
 }

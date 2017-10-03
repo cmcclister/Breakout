@@ -15,27 +15,21 @@ const Draw = (() => {
 		  Draw.clear(Global.Width, Global.Height); // Clear canvas to redraw
 		  Draw.top(); // Draw score, game name, and lives
 		  Draw.map(); // Game play (most of canvas)
-		  Player.draw(); // Paddle
-		  Char.draw(); // Ball
-		  s ? Elements.draw() : Elements.init(); // Bricks
+		  Player.draw(); // Draw paddle
+		  Char.draw(); // Draw ball
+		  s ? Elements.draw() : Elements.init();
 		  Draw.controls(); // Controls at bottom
-		  // If game has started...
-		  if (Global.Level > 0 || s) {
-		    gameLoop(); // Loop through game play
-		  // Else if game hasn't started, show instructions over tile map
-		  } else {
-		    Draw.gameInstructions(); // Marquee default
-		  }
+		  Global.Level > 0 || s ? Game.loop() : Draw.gameInstructions();
 	}
 
 	const pub_clear = (w, h) => ctx.clearRect(0, 0, w, h);
 
-	const pub_controlInstructions = () => Draw.text(Global.Tile * 0.65, 'white', [['Sound: [S], Left: [A], Right: [D], Pause: [SPACE]', Global.Tile * (Constant.eNum.TileMap.X * 0.35), Global.Tile * (Constant.eNum.TileMap.Y - 0.65)]]);
+	const pub_controlInstructions = () => Draw.text(Global.Tile * 0.65, Constant.Canvas.BACKGROUND, [['Sound: [S], Left: [A], Right: [D], Pause: [SPACE]', Global.Tile * (Constant.eNum.TileMap.X * 0.35), Global.Tile * (Constant.eNum.TileMap.Y - 0.65)]]);
 
 	const pub_controls = () => {
 		Draw.rect('fill', Global.Layout.theme, null, 0, Global.Tile * (Constant.eNum.TileMap.Y * 0.944), Global.Width, Global.Tile * (Constant.eNum.TileMap.Y * 0.056));
 		if (!Constant.Test.TOUCH) {
-		    Draw.text(Global.Tile, 'white', [['Sound: ', Global.Tile, Global.Tile * (Constant.eNum.TileMap.Y * 0.985)]]); // Sound Text
+		    Draw.text(Global.Tile, Constant.Canvas.BACKGROUND, [['Sound: ', Global.Tile, Global.Tile * (Constant.eNum.TileMap.Y * 0.985)]]); // Sound Text
 		    Draw.soundToggle(); // Sound button
 		    Draw.controlInstructions(); // Instructions
 		} else {
@@ -78,7 +72,7 @@ const Draw = (() => {
     const pub_map = () => {
     	Global.Top = Global.Tile * (Constant.eNum.TileMap.Y * 0.056);
   		Global.Bottom = Global.Tile * (Constant.eNum.TileMap.Y * 0.944);
-  		Draw.rect('fill', 'white', null, 0, Global.Top, Global.Width, Global.Bottom);
+  		Draw.rect('fill', Constant.Canvas.BACKGROUND, null, 0, Global.Top, Global.Width, Global.Bottom);
     }
 
     const pub_name = () => Draw.text(Global.Tile * 1.5, Global.Layout.theme, [[Constant.Game.NAME, Global.Tile * (Constant.eNum.TileMap.X  * 0.3), Global.Tile * (Constant.eNum.TileMap.Y * 0.05)]]);
@@ -122,7 +116,7 @@ const Draw = (() => {
     const pub_score = () => Draw.text(Global.Tile, Global.Layout.theme, [['Score:' + Global.Score, Global.Tile, Global.Tile * (Constant.eNum.TileMap.Y * 0.042)]]);
 
     const pub_soundToggle = () => {
-    	Draw.rect('round', 'white', 'black', Global.Tile * 5, Global.Tile * (Constant.eNum.TileMap.Y * 0.962), Global.Tile * 2, Global.Tile, Global.Tile / 2, true);
+    	Draw.rect('round', Constant.Canvas.BACKGROUND, 'black', Global.Tile * 5, Global.Tile * (Constant.eNum.TileMap.Y * 0.962), Global.Tile * 2, Global.Tile, Global.Tile / 2, true);
   		Global.Sound ? Draw.rect('round', 'gray', null, Global.Tile * 6, Global.Tile * (Constant.eNum.TileMap.Y * 0.962), Global.Tile, Global.Tile, Global.Tile / 2, true) : Draw.rect('round', 'gray', null, Global.Tile * 5, Global.Tile * (Constant.eNum.TileMap.Y * 0.962), Global.Tile, Global.Tile, Global.Tile / 2, true);
     }
 
@@ -133,7 +127,7 @@ const Draw = (() => {
     }
 
 	const pub_top = () => {
-		Draw.rect('fill', 'white', null, 0, 0, Global.Width, Global.Tile * (Constant.eNum.TileMap.Y * 0.56));
+		Draw.rect('fill', Constant.Canvas.BACKGROUND, null, 0, 0, Global.Width, Global.Tile * (Constant.eNum.TileMap.Y * 0.56));
   		Draw.score(); // Score in upper left
   		Draw.name(); // Name in upper center
   		Draw.lives(); // Lives in upper right
