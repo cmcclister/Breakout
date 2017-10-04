@@ -87,7 +87,7 @@ const Control = (() => {
     }
 
     const touchPauseHandler = e => {
-        if (Global.Start && !Globa.Lock) { // Should only fire if game has started
+        if (Global.Start && !Global.Lock) { // Should only fire if game has started
           Global.pauseUpdate(Global.Pause);
           if (!Global.Pause) Game.loop(); // Continue game
         }
@@ -149,7 +149,8 @@ const Control = (() => {
           if (Global.Height > fM && Global.Height < fM + Constant.eNum.TileMap.Y) break;
           Global.SpeedBaseline *= 1.1;
         }
-        if (Constant.Test.TOUCH) Global.SpeedBaseline /= 2; // Tablet fix         
+        if (Constant.Test.TOUCH) Global.SpeedBaseline /= 2; // Tablet fix  
+        if (Global.SpeedBaseline > 6) Global.SpeedBaseline = 6; // Too fast on large monitors       
       } else {
         for (var i = 0; i < 50; i++) {
           fM = Constant.eNum.TileMap.X * i;
@@ -157,6 +158,7 @@ const Control = (() => {
           Global.SpeedBaseline *= 1.1;
         }
         if (Constant.Test.TOUCH) Global.SpeedBaseline /= 2; // Tablet fix 
+        if (Global.SpeedBaseline > 6) Global.SpeedBaseline = 6; // Too fast on large monitors
       }
       
       if (wP) { // Width of window sets game dimensions
