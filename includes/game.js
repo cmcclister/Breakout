@@ -400,7 +400,7 @@ const Game = {
   loop() {
       // Continue looping if game isn't paused
       if (!Global.Pause) {
-        Game.collisionDetection();
+        this.collisionDetection();
         // If the ball hits the right or left edge of the canvas, reverse the direction
         if (Char.X + Char.DX > Global.Width - Char.R || Char.X + Char.DX < Char.R) Char.DX = -Char.DX;
 
@@ -426,9 +426,9 @@ const Game = {
           // Hitting bottom of canvas loses lives / ends game
           else {
             Global.Lives--;
-            if (Global.Lives < 1) Game.interlude('GameOver'); // Show "Game Lost" animation
+            if (Global.Lives < 1) this.interlude('GameOver'); // Show "Game Lost" animation
             else {
-              Game.interlude('LifeOver'); // Show "Life lost" animation
+              this.interlude('LifeOver'); // Show "Life lost" animation
               Player.set(); // Reset paddle position
               Char.set(); // Reset ball position
               Global.ScoreCounter = Global.Level + 1; // reset score increment

@@ -20,13 +20,13 @@ const Global = {
 	Width 		 	: 0,
   	init() {
 		if (!Constant.Test.TOUCH) document.getElementById('touchControl').style.display = 'none'; // Only show buttons for touch devices
-        Global.Layout = Game.Levels[0];
-        Global.Left = Global.Right = Global.Start = false;
-        Global.Level = Global.ScoreCounter = Global.Score = 0;
-        Global.Lives = 3;
-        Global.SpeedIncrement = 3.5;
-        Global.ExtraLives = [];
-        for (x of Constant.eNum.Score.EXTRA_LIVES) Global.ExtraLives.push(x);
+        this.Layout = Game.Levels[0];
+        this.Left = this.Right = this.Start = false;
+        this.Level = this.ScoreCounter = this.Score = 0;
+        this.Lives = 3;
+        this.SpeedIncrement = 3.5;
+        this.ExtraLives = [];
+        for (x of Constant.eNum.Score.EXTRA_LIVES) this.ExtraLives.push(x);
 	},
 	lockUpdate(l = true) { Global.Lock = !l },
 	pauseUpdate(p = true) { Global.Pause = !p },

@@ -5,14 +5,14 @@ const Player = {
 	X 	: 0,
 	Y 	: 0,
   	draw() { // Set up paddle in default locale
-  		Player.Y = Global.Bottom - Player.H;
-  		Draw.rect('round', Global.Layout.player, 'black', Player.X, Player.Y, Player.W, Player.H, Player.H / 2, true);
+  		this.Y = Global.Bottom - this.H;
+  		Draw.rect('round', Global.Layout.player, 'black', this.X, this.Y, this.W, this.H, this.H / 2, true);
   	},
     set() {
-    	Player.H = Global.Tile;
-		Player.W = Global.Tile * 6;
-		Player.X = (Global.Width - Player.W) / 2;
-		Player.Y = Global.Bottom - Player.H;
-		Player.M = Player.W * 1.5;
+    	this.H = Global.Tile;
+		this.W = Global.Tile * 6;
+		this.X = (Global.Width - this.W) / 2;
+		this.Y = Global.Bottom - this.H;
+		this.M = this.W * 1.5;
     }
 }

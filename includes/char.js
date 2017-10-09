@@ -6,14 +6,14 @@ const Char = {
 	X    : 0,
 	Y    : 0,
   draw() { // Set up character in default locale
-  	Draw.arc(Constant.Char.COLOR, null, Char.X, Char.Y, Char.R, 0, Math.PI * 2, true, true, true);
+  	Draw.arc(Constant.Char.COLOR, null, this.X, this.Y, this.R, 0, Math.PI * 2, true, true, true);
   },
   set() {
-    Char.R = Constant.eNum.Char.RADIUS * Global.Tile;
-    Char.S = Global.SpeedIncrement + (Global.SpeedIncrement * (Global.Level * Constant.eNum.Char.INCREMENT));
-    Char.X = Global.Width / 2;
-		Char.Y = Player.Y - Char.R * 2;
-    Char.DX = Char.S;
-    Char.DY = -Char.S;
+    this.R = Constant.eNum.Char.RADIUS * Global.Tile;
+    this.S = Global.SpeedIncrement + (Global.SpeedIncrement * (Global.Level * Constant.eNum.Char.INCREMENT));
+    this.X = Global.Width / 2;
+		this.Y = Player.Y - this.R * 2;
+    this.DX = this.S;
+    this.DY = -this.S;
   }
 }
