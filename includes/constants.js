@@ -80,7 +80,7 @@ const Constant = {
         STYLE  : 'bold'
     },
     Game: {
-        NAME : 'Bouncy Bouncy'
+        NAME : 'Breakout'
     },
     Test: {
         AUDIO : UA.hasAudio,

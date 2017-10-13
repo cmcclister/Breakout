@@ -39,24 +39,24 @@ const Draw = (() => {
 
 	const pub_gameInstructions = () => {
 		// Instruction box
-		Draw.rect('round', 'rgba(200, 200, 200, .5)', 'black', Global.Tile * (Constant.eNum.TileMap.X * 0.25), Global.Tile * (Constant.eNum.TileMap.Y * 0.25), Global.Tile * (Constant.eNum.TileMap.X * 0.5), Global.Tile * (Constant.eNum.TileMap.Y * 0.5), Global.Tile, true);
+		Draw.rect('round', 'rgba(200, 200, 200, .5)', 'black', Global.Tile * (Constant.eNum.TileMap.X * 0.25), Global.Tile * (Constant.eNum.TileMap.Y * 0.4), Global.Tile * (Constant.eNum.TileMap.X * 0.5), Global.Tile * (Constant.eNum.TileMap.Y * 0.35), Global.Tile, true);
 		// Instruction Text
 		let textArray = [];
 		if (Constant.Test.TOUCH) {
-		    textArray.push(['TAP "S" to start', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.42)]);
-		    textArray.push(['game & toggle sound', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.45)]);
-		    textArray.push(['TAP "P" to pause', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.52)]);
-		    textArray.push(['TAP "L" for left', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.59)]);
-		    textArray.push(['and "R" for right', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.62)]);
+		    textArray.push(['TAP "S" to start', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.45)]);
+		    textArray.push(['game & toggle sound', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.48)]);
+		    textArray.push(['TAP "P" to pause', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.58)]);
+		    textArray.push(['TAP "L" for left', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.68)]);
+		    textArray.push(['and "R" for right', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.71)]);
 		} else {
-		    textArray.push(['Press SPACE or RETURN', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.33)]);
-		    textArray.push(['to start and pause game', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.36)]);
-		    textArray.push(['Press LEFT or A', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.44)]);
-		    textArray.push(['to move paddle left', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.47)]);
-		    textArray.push(['Press RIGHT or D', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.55)]);
-		    textArray.push(['to move paddle right', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.58)]);
-		    textArray.push(['Press TAB or S', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.67)]);
-		    textArray.push(['to toggle sound', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.70)]);
+		    textArray.push(['Press SPACE or RETURN', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.45)]);
+		    textArray.push(['to start and pause game', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.48)]);
+		    textArray.push(['Press LEFT or A', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.53)]);
+		    textArray.push(['to move paddle left', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.56)]);
+		    textArray.push(['Press RIGHT or D', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.61)]);
+		    textArray.push(['to move paddle right', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.64)]);
+		    textArray.push(['Press TAB or S', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.69)]);
+		    textArray.push(['to toggle sound', Global.Tile * (Constant.eNum.TileMap.X * 0.285), Global.Tile * (Constant.eNum.TileMap.Y * 0.72)]);
 		}
 		Draw.text(Global.Tile, Global.Layout.theme, textArray); 
 	}
@@ -75,7 +75,7 @@ const Draw = (() => {
   		Draw.rect('fill', Constant.Canvas.BACKGROUND, null, 0, Global.Top, Global.Width, Global.Bottom);
     }
 
-    const pub_name = () => Draw.text(Global.Tile * 1.5, Global.Layout.theme, [[Constant.Game.NAME, Global.Tile * (Constant.eNum.TileMap.X  * 0.3), Global.Tile * (Constant.eNum.TileMap.Y * 0.05)]]);
+    const pub_name = () => Draw.text(Global.Tile * 1.5, Global.Layout.theme, [[Constant.Game.NAME, Global.Tile * (Constant.eNum.TileMap.X * 0.4), Global.Tile * (Constant.eNum.TileMap.Y * 0.05)]]);
 
     const pub_rect = (type, fs, ss, x, y, w, h, rl, f, s) => {
     	if (fs) ctx.fillStyle = fs;
