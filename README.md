@@ -1,3 +1,3 @@
 # Breakout
 
-The arcade classic in ES6 JS and HTML5 Canvas
+A version of the arcade classic developed in ES6 JS and HTML5 Canvas
